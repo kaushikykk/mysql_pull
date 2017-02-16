@@ -25,25 +25,17 @@ db = MySQLdb.connect("ultra01.clfb35oemeao.us-west-2.rds.amazonaws.com",MYSQL_US
 cursor = db.cursor()
 
 # SQL query to fetch data
-sql = "SELECT * FROM EVENTS \
+sql = "SELECT  EVENT_START_TIME,EVENT_END_TIME,EVENT_NAME FROM EVENTS \
        WHERE EVENT_START_TIME > '{}'".format(Current_week)
 
-##Catch all the exceptions.
 try:
    # Execute the SQL command
    cursor.execute(sql)
    # Fetch all the rows in a list of lists.
    results = cursor.fetchall()
-   print "{:25} {:20} {:25}".format("START_DATE","END_DATE","EVENT_NAME")
-   for row in results:
-     table =[[row[3]],[row[4]],[row[1]]]
-      # Now print fetched result
-     #table = ["{} {} {:25}".format(START_DATE,END_DATE,EVENT_NAME)]
-    # table = [[row[3]], [row[4]], [row[1]]
-     print tabulate(table)
+   print "{:25} {:25} {:25}".format("START_DATE","END_DATE","EVENT_NAME")
+   print  tabulate(results)
 except:
    print "Error: unable to fecth data"
 
-
-# disconnect from server
 db.close()
