@@ -19,6 +19,8 @@ else:
 ##Set user credentials as environment variables
 MYSQL_USER = os.environ["MYSQL_USER"]
 MYSQL_PASS = os.environ["MYSQL_PASS"]
+DB_HOST = os.environ["DB_HOST"]
+DB_NAME = os.environ["DB_NAME"]
 
 
 
@@ -29,7 +31,7 @@ Current_week = Current_week.strftime("%Y-%m-%d %H:%M:%S")
 
 
 # Database connection.
-db = MySQLdb.connect("ultra01.clfb35oemeao.us-west-2.rds.amazonaws.com",MYSQL_USER,MYSQL_PASS,"Ultradb" )
+db = MySQLdb.connect(DB_HOST,MYSQL_USER,MYSQL_PASS,DB_NAME)
 
 # prepare a cursor object using cursor() method
 cursor = db.cursor()
