@@ -8,9 +8,19 @@ import csv
 from datetime import timedelta
 from tabulate import tabulate
 
+##Check if MYSQL_USER/MYSQL_PASS are null
+if os.environ["MYSQL_USER"] == " " or os.environ["MYSQL_PASS"] == " ":
+  print "Please declare MYSQL_USER and MYSQL_PASS"
+  quit()
+else:
+  print 'MYSQL_USER/MYSQL_PASS exists'
+
+
 ##Set user credentials as environment variables
 MYSQL_USER = os.environ["MYSQL_USER"]
 MYSQL_PASS = os.environ["MYSQL_PASS"]
+
+
 
 #Creating a variable currentweek, which would be currentdate-7 days.
 now = datetime.datetime.now()
